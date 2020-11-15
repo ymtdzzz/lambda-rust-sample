@@ -67,7 +67,7 @@ async fn hello(event: CustomEvent, c: Context) -> Result<CustomOutput> {
     }).await?;
     
     Ok(CustomOutput {
-        message: format!("Succeeded.")
+        message: format!("Succeeded. *release*")
     })
 }
 
@@ -132,7 +132,7 @@ mod tests {
             text_body: Some("Firstname".to_string())
         };
         let expected = CustomOutput {
-            message: "Succeeded.".to_string()
+            message: "Succeeded. *release*".to_string()
         };
         assert_eq!(
             hello(event, Context::default())
