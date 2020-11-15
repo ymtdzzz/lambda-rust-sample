@@ -1,4 +1,12 @@
 {
+  "scripts": {
+    "start": "AWS_PROFILE=s3local sls offline start --stage local",
+    "deploy:dev": "sls deploy --stage dev",
+    "deploy:release": "sls deploy --stage release",
+    "coverage": "bash coverage.sh",
+    "coverage:ci": "bash coverage.sh ontravis",
+    "coverage:ci-sendcov": "bash coverage.sh ontravis sendcov"  
+  },
   "devDependencies": {
     "serverless": "^1.74.1",
     "serverless-offline": "EgorDm/serverless-offline.git#feature/rust-invoke",
