@@ -102,6 +102,11 @@ fn get_err_msg(code: u16, msg: &str) -> String {
     format!("[{}] {}", code, msg)
 }
 
+fn hoge_function() -> String {
+    println!("hoge function executed.");
+    String::from("hogehoge!")
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -178,5 +183,12 @@ mod tests {
             // result must be Err
             panic!()
         }
+    }
+
+    #[test]
+    fn can_hoge_function_return_correct_string() {
+        let result = hoge_function();
+        let expected = String::from("hogehoge!");
+        assert_eq!(result, expected);
     }
 }
