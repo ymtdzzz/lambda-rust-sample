@@ -1,0 +1,17 @@
+language: rust
+rust:
+  - nightly
+cache: cargo
+install:
+  - cargo install grcov rust-covfix
+  - nvm install 12.14.1 --latest-npm
+  - nvm alias default 12.14.1
+  - npm install serverless -g
+  - npm install
+  - sls config credentials --stage dev --provider aws --key "${aws_access_key_id}" --secret "${aws_secret_access_key}"
+before_script:
+  - cargo test
+script:
+  - npm run coverage:nogen
+  - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo "This is master which released to dev stage." && npm run deploy:dev; fi
+  - if [ "$TRAVIS_BRANCH" = "release" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo "This is release which released to release stage." && npm run deploy:release; fi
