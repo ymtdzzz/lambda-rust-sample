@@ -12,7 +12,7 @@ install:
 before_script:
   - cargo test
 script:
-  - npm run coverage:nogen
+  - npm run coverage:ci-sendcov
   - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo "This is master which released to dev stage." && npm run deploy:dev; fi
   - if [ "$TRAVIS_BRANCH" = "release" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then echo "This is release which released to release stage." && npm run deploy:release; fi
 env:
